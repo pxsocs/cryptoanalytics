@@ -1,6 +1,6 @@
 import requests
 import json
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 import pandas as pd
 
@@ -17,7 +17,11 @@ def pricegrabber(ticker, fx, force):
         print("Forced updated, not checking local file - downloading")
 
     if not force:
-        timestamp = date.fromtimestamp(path.stat().st_mtime)
+        try:
+            timestamp = date.fromtimestamp(path.stat().st_mtime)
+        except FileNotFoundError:
+            timestamp = 0
+
         if date.today() == timestamp:
             print("Local file was updated today. No need to download.")
             with open(filename, 'r') as fh:
@@ -40,14 +44,89 @@ def pricegrabber(ticker, fx, force):
         json.dump(data, outfile)
     print(f"Done with {filename}")
 
-    print("Success on downloading historical prices. Data saved locally")
+    print("Success. Downloaded historical prices. Data saved locally")
     return (data)
 
 
-price_data = pricegrabber("BTC", "USD", False)
-df = pd.DataFrame.from_dict(price_data["Data"])
-df['time'] = pd.to_datetime(df['time'], unit='s')
-print(df)
+def create_stats(ticker, fx, force, frequency,
+                 period_exclude, start_date, end_date):
+    # Store the data in a dictionary for later use in html
+    stats = {}
+    stats['ticker'] = ticker
+    stats['fx'] = fx
+    stats['frequency'] = frequency
+    stats['period_exclude'] = period_exclude
+    stats['start_date'] = start_date
+    stats['end_date'] = end_date
 
-initial_time = min(df['time'])
-final_time = df['time'].max()
+    # Download the prices
+    price_data = pricegrabber(ticker, fx, force)
+
+    # Convert data to Panda's Dataframe, include relevant columns,
+    # retrieve data
+    df = pd.DataFrame.from_dict(price_data["Data"])
+    df['time'] = pd.to_datetime(df['time'], unit='s')
+    df.set_index('time', inplace=True)
+    df['grouped_pct'] = df['close'].pct_change(frequency)
+    df['return_day_pct'] = df['close'].pct_change(1)
+
+    # Save the initial and end date of available data downloaded
+    stats['set_final_time'] = df.index.max()
+    stats['set_initial_time'] = min(df.index)
+
+    # Filter the dataframe to only include selected dates
+    df = df[(df.index >= start_date) & (df.index <= end_date)]
+
+    stats['nlargest'] = df.nlargest(period_exclude, 'grouped_pct')
+    stats['nsmallest'] = df.nsmallest(period_exclude, 'grouped_pct')
+
+    # TR for the period
+    stats['ticker_start_value'] = df.iloc[0]['close']
+    stats['ticker_end_value'] = df.iloc[-1]['close']
+    stats['period_tr'] = (stats['ticker_end_value'
+                                ] / stats['ticker_start_value']) - 1
+
+    # Calculate the compounded TR of nlargest
+    # moves & then do the same for smallest
+    nlargest_tr = 1
+    for element in stats['nlargest']['grouped_pct']:
+        nlargest_tr = nlargest_tr * (1+element)
+    nlargest_tr = nlargest_tr - 1
+    stats['nlargest_tr'] = nlargest_tr
+    stats['nlargest_mean'] = stats['nlargest']['grouped_pct'].mean()
+
+    nsmallest_tr = 1
+    for element in stats['nsmallest']['grouped_pct']:
+        nsmallest_tr = nsmallest_tr * (1+element)
+    nsmallest_tr = nsmallest_tr-1
+    stats['nsmallest_tr'] = nsmallest_tr
+    stats['nsmallest_mean'] = stats['nsmallest']['grouped_pct'].mean()
+
+    stats['nboth_tr'] = ((1+nlargest_tr)*(1+nsmallest_tr))-1
+    stats['exclude_nlargest_tr'] = (1 + stats['period_tr']) * (
+        1 - stats['nlargest_tr']) - 1
+    stats['exclude_nsmallest_tr'] = (1 + stats['period_tr']) * (
+        1 - stats['nsmallest_tr']) - 1
+
+    stats['mean_daily_return_period'] = df['return_day_pct'].mean()
+    stats['mean_nperiod_return'] = df['grouped_pct'].mean()
+
+    return (stats)
+
+# Start main script
+# -----------------
+
+
+# Inputs
+ticker = "BTC"
+fx = "USD"
+force = False
+frequency = 3
+period_exclude = 15
+start_date = datetime(2016, 1, 1)
+end_date = datetime.today()
+
+stats = create_stats(
+    ticker, fx, force, frequency, period_exclude, start_date, end_date)
+
+print(stats)
