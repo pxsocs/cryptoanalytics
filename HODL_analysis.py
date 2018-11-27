@@ -3,7 +3,7 @@ import json
 from datetime import date, datetime
 from pathlib import Path
 import pandas as pd
-from flask import Flask
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -75,7 +75,7 @@ def create_stats(ticker, fx, force, frequency,
 
     # Save the initial and end date of available data downloaded
     stats['set_final_time'] = df.index.max()
-    stats['set_initial_time'] = min(df.index)
+    stats['set_initial_time'] = df.index.min()
 
     # Filter the dataframe to only include selected dates
     df = df[(df.index >= start_date) & (df.index <= end_date)]
@@ -114,6 +114,15 @@ def create_stats(ticker, fx, force, frequency,
     stats['mean_daily_return_period'] = df['return_day_pct'].mean()
     stats['mean_nperiod_return'] = df['grouped_pct'].mean()
 
+    # Formatting the results to return a JSON
+    stats['start_date'] = stats['start_date'].strftime('%m/%d/%Y')
+    stats['end_date'] = stats['end_date'].strftime('%m/%d/%Y')
+    stats['set_initial_time'] = stats['set_initial_time'].strftime('%m/%d/%Y')
+    stats['set_final_time'] = stats['set_final_time'].strftime('%m/%d/%Y')
+    stats['nlargest'] = stats['nlargest'].to_json()
+    stats['nsmallest'] = stats['nsmallest'].to_json()
+    stats = json.dumps(stats)
+
     return (stats)
 
 
@@ -122,43 +131,24 @@ def create_stats(ticker, fx, force, frequency,
 @app.route("/")
 @app.route("/home")
 def home():
+    return render_template('index.html')
+
+
+@app.route("/stats_json")
+def stats_json():
     # Inputs
     ticker = "BTC"
     fx = "USD"
     force = False
-    frequency = 3
-    period_exclude = 15
-    start_date = datetime(2016, 1, 1)
-    end_date = datetime.today()
+    frequency = 7
+    period_exclude = 2
+    start_date = datetime(2015, 1, 1)
+    end_date = datetime(2018, 11, 27)
 
     stats = create_stats(
         ticker, fx, force, frequency, period_exclude, start_date, end_date)
 
-    # Formatting the results
-    stats['start_date'] = stats['start_date'].strftime('%m/%d/%Y')
-    stats['end_date'] = stats['end_date'].strftime('%m/%d/%Y')
-    stats['set_initial_time'] = stats['set_initial_time'].strftime('%m/%d/%Y')
-    stats['set_final_time'] = stats['set_final_time'].strftime('%m/%d/%Y')
-
-    # data['portfolio_value'] = data['portfolio_value'].apply("$ {:,.2f}".format)
-    # data['NAV'] = data['NAV'].apply("{:,.2f}".format)
-    # data['pchange'] = data['pchange'].apply("$ {:,.2f}".format)
-    # data['navpchange'] = data['navpchange']*100
-    # data['navpchange'] = data['navpchange'].apply("{:,.2f}%".format)
-    #
-    # data2 = data.rename(columns={
-    #     'date': 'Date', 'portfolio_value': 'Portfolio Value ($)',
-    #     'pchange': 'Portfolio Change ($)', 'NAV': 'NAV',
-    #     'navpchange': 'NAV Change (%)'})
-    #
-    stats['nlargest'] = stats['nlargest'].to_json()
-    stats['nsmallest'] = stats['nsmallest'].to_json()
-
-    print(stats)
-
-    stats_json = json.dumps(stats)
-    print(stats_json)
-    return(stats_json)
+    return(stats)
 
 
 # Start Flask Server

@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- http://jquery.com/ -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<!--  High Charts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="static/highcharts.js"></script>
+
+
+<div class="container-fluid">
+<div class="row section-center__full">
+<div class="col-sm-12">
+
+    <h1>
+        CryptoAnalytics
+    </h1>
+    <h4>HODL Calculator: A case against market timing</h4>
+    <h5>Market timing is not as easy as it sounds</h5>
+    <h6>Let's suppose that during a certain time frame, you miss only the top 10 days of returns.</h6>
+    <h6>How much would that hurt your performance? After all, it's only 10 days...</h6>
+    <h6 class="alert-secondary">The answer is probably more than you expect. Long term asset allocation works best if left untouched.</h6>
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+
+                    <small id="ticker_small" class="form-text text-right text-muted">Ticker</small>
+                    <input type="text" id="ticker" class="form-control text-right" value="BTC" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+
+                    <script>
+                        $( function() {
+                            $( "#start_date" ).datepicker();
+                            var now = new Date();
+                            var oneYrAgo = new Date();
+                            oneYrAgo.setYear(now.getFullYear() - 3);
+                            document.getElementById('start_date').valueAsDate = oneYrAgo;
+                        } );
+                    </script>
+                    <small id="start_date_small" class="form-text text-right text-muted">Start Date</small>
+                    <input type="date" id="start_date" class="form-control text-right"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+                    <script>
+                        $( function() {
+                            $( "#end_date" ).datepicker();
+                            document.getElementById('end_date').valueAsDate = new Date();
+                        } );
+                    </script>
+                    <small id="end_date_small" class="form-text text-right text-muted">End Date</small>
+                    <input type="date" id="end_date" class="form-control text-right" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+                    <small id="frequency" class="form-text text-right text-muted">How many days are missed?</small>
+                    <input type="number" id="frequency" class="form-control text-right" value="5" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+                    <small id="period_exclude_small" class="form-text text-right text-muted">Exclude how many of these blocks of days?</small>
+                    <input type="number" id="period_exclude" class="form-control text-right" value="10" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+                    <small id="fx_small" class="form-text text-right text-muted">Prices are based in</small>
+                    <input type="text" id="fx" class="form-control text-right" value="USD" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <p><span id="text_summary" class="text-info"></span></p>
+            <p><span id="text_summary_2" class="text-info small"></span></p>
+            <p><span id="warnings" class="text-danger"></span></p>
+            <table class="small table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Initial Price:</th>
+                        <td class="text-right"><span id="ticker_start_value">...</span></td>
+                    </tr>
+                    <tr>
+                        <th>Final Price:</th>
+                        <td class="text-right"><span id="ticker_end_value">...</span></td>
+                    </tr>
+                    <tr>
+                        <th>Total Return on period:</th>
+                        <td class="text-right"><span id="period_tr">...</span></td>
+                    </tr>
+                    <tr>
+                        <th>Total Return missed <span id="missed"></span></th>
+                        <td class="text-right"><span id="nlargest_tr">...</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+<hr>
+<h6>The source code for this page is available at <a href="https://github.com/pxsocs/cryptoanalytics">GitHub</a></h6>
+<h6>Please report bugs and suggestions directly at the <a href="https://github.com/pxsocs/cryptoanalytics">repository</a></h6>
+
+
+</div>
+</div>
+</div>
+
+<script src="/static/hodl.js"></script>
+{% endblock content %}
