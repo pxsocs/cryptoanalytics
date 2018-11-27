@@ -3,6 +3,9 @@ import json
 from datetime import date, datetime
 from pathlib import Path
 import pandas as pd
+from flask import Flask
+
+app = Flask(__name__)
 
 
 def pricegrabber(ticker, fx, force):
@@ -113,20 +116,51 @@ def create_stats(ticker, fx, force, frequency,
 
     return (stats)
 
-# Start main script
-# -----------------
+
+# Start main route at /
+# ---------------------
+@app.route("/")
+@app.route("/home")
+def home():
+    # Inputs
+    ticker = "BTC"
+    fx = "USD"
+    force = False
+    frequency = 3
+    period_exclude = 15
+    start_date = datetime(2016, 1, 1)
+    end_date = datetime.today()
+
+    stats = create_stats(
+        ticker, fx, force, frequency, period_exclude, start_date, end_date)
+
+    # Formatting the results
+    stats['start_date'] = stats['start_date'].strftime('%m/%d/%Y')
+    stats['end_date'] = stats['end_date'].strftime('%m/%d/%Y')
+    stats['set_initial_time'] = stats['set_initial_time'].strftime('%m/%d/%Y')
+    stats['set_final_time'] = stats['set_final_time'].strftime('%m/%d/%Y')
+
+    # data['portfolio_value'] = data['portfolio_value'].apply("$ {:,.2f}".format)
+    # data['NAV'] = data['NAV'].apply("{:,.2f}".format)
+    # data['pchange'] = data['pchange'].apply("$ {:,.2f}".format)
+    # data['navpchange'] = data['navpchange']*100
+    # data['navpchange'] = data['navpchange'].apply("{:,.2f}%".format)
+    #
+    # data2 = data.rename(columns={
+    #     'date': 'Date', 'portfolio_value': 'Portfolio Value ($)',
+    #     'pchange': 'Portfolio Change ($)', 'NAV': 'NAV',
+    #     'navpchange': 'NAV Change (%)'})
+    #
+    stats['nlargest'] = stats['nlargest'].to_json()
+    stats['nsmallest'] = stats['nsmallest'].to_json()
+
+    print(stats)
+
+    stats_json = json.dumps(stats)
+    print(stats_json)
+    return(stats_json)
 
 
-# Inputs
-ticker = "BTC"
-fx = "USD"
-force = False
-frequency = 3
-period_exclude = 15
-start_date = datetime(2016, 1, 1)
-end_date = datetime.today()
-
-stats = create_stats(
-    ticker, fx, force, frequency, period_exclude, start_date, end_date)
-
-print(stats)
+# Start Flask Server
+if __name__ == '__main__':
+    app.run(debug=True)
