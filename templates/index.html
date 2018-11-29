@@ -16,6 +16,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="static/highcharts.js"></script>
 
+<div class="modal"><!-- Place at bottom of page --></div>
 
 <div class="container-fluid">
 <div class="row section-center__full">
@@ -33,7 +34,7 @@
             <div class="form-group">
 
                     <small id="ticker_small" class="form-text text-right text-muted">Ticker</small>
-                    <input type="text" id="ticker" class="form-control text-right" value="BTC" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" id="ticker" class="form-control text-right monitor_chg" value="BTC" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
 
                     <script>
@@ -46,7 +47,7 @@
                         } );
                     </script>
                     <small id="start_date_small" class="form-text text-right text-muted">Start Date</small>
-                    <input type="date" id="start_date" class="form-control text-right"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="date" id="start_date" class="form-control text-right monitor_chg"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
                     <script>
                         $( function() {
@@ -55,23 +56,25 @@
                         } );
                     </script>
                     <small id="end_date_small" class="form-text text-right text-muted">End Date</small>
-                    <input type="date" id="end_date" class="form-control text-right" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="date" id="end_date" class="form-control text-right monitor_chg" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
                     <small id="frequency_small" class="form-text text-right text-muted">How many days are missed?</small>
-                    <input type="number" id="frequency" class="form-control text-right" value="3" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="number" id="frequency" class="form-control text-right monitor_chg" value="3" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
                     <small id="period_exclude_small" class="form-text text-right text-muted">Exclude how many of these blocks of days?</small>
-                    <input type="number" id="period_exclude" class="form-control text-right" value="10" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="number" id="period_exclude" class="form-control text-right monitor_chg" value="10" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
                     <small id="fx_small" class="form-text text-right text-muted">Prices are based in</small>
-                    <input type="text" id="fx" class="form-control text-right" value="USD" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" id="fx" class="form-control text-right monitor_chg" value="USD" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
             </div>
         </div>
 
         <div class="col-sm-8">
+            <p><span id="error_message" class="text-danger"></span></p>
             <p><span id="text_summary" class="text-info"></span></p>
-            <p><span id="text_summary_2" class="text-info small"></span></p>
+            <p><span id="text_summary_0" class="text-dark small"></span></p>
+            <p><span id="text_summary_2" class="text-info"></span></p>
             <p><span id="warnings" class="text-danger"></span></p>
             <table class="small table table-striped">
                 <tbody>

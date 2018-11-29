@@ -40,8 +40,18 @@ def pricegrabber(ticker, fx, force):
         "&tsym="+fx+"&allData=true"
     print(f" URL = {baseURL}")
 
-    request = requests.get(baseURL, timeout=2)
-    data = request.json()
+    time_frame = 0
+    #  For some reason, the CryptoCompare API retuns only 30 days of data
+    #  from time to time. Not sure why. This forces the download until done.
+
+    while time_frame < 3000000:
+        request = requests.get(baseURL)
+        data = request.json()
+        time_frame = data['TimeFrom'] - data['TimeTo']
+
+    if (data['Response'] == "Error"):
+        print("Error Downloading Data - something went wrong")
+        return("error")
 
     with open(filename, 'w') as outfile:
         json.dump(data, outfile)
@@ -55,15 +65,23 @@ def create_stats(ticker, fx, force, frequency,
                  period_exclude, start_date, end_date):
     # Store the data in a dictionary for later use in html
     stats = {}
+
+    # Download the prices
+    price_data = pricegrabber(ticker, fx, force)
+
+    if price_data == "error":
+        stats['status'] = "error"
+        stats = json.dumps(stats)
+        print("ERROR")
+        print(stats)
+        return (stats)
+
     stats['ticker'] = ticker
     stats['fx'] = fx
     stats['frequency'] = frequency
     stats['period_exclude'] = period_exclude
     stats['start_date'] = start_date
     stats['end_date'] = end_date
-
-    # Download the prices
-    price_data = pricegrabber(ticker, fx, force)
 
     # Convert data to Panda's Dataframe, include relevant columns,
     # retrieve data
@@ -203,6 +221,7 @@ def create_stats(ticker, fx, force, frequency,
         index=False)
     # stats['nlargest'] = stats['nlargest'].to_json()
     stats['nsmallest'] = stats['nsmallest'].to_json()
+    stats['status'] = "success"
     stats = json.dumps(stats)
 
     return (stats)
