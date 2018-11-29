@@ -21,9 +21,6 @@
 <div class="row section-center__full">
 <div class="col-sm-12">
 
-    <h1>
-        CryptoAnalytics
-    </h1>
     <h4>HODL Calculator: A case against market timing</h4>
     <h5>Market timing is not as easy as it sounds</h5>
     <h6>Let's suppose that during a certain time frame, you miss only the top 10 days of returns.</h6>
@@ -60,8 +57,8 @@
                     <small id="end_date_small" class="form-text text-right text-muted">End Date</small>
                     <input type="date" id="end_date" class="form-control text-right" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
-                    <small id="frequency" class="form-text text-right text-muted">How many days are missed?</small>
-                    <input type="number" id="frequency" class="form-control text-right" value="5" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <small id="frequency_small" class="form-text text-right text-muted">How many days are missed?</small>
+                    <input type="number" id="frequency" class="form-control text-right" value="3" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 
                     <small id="period_exclude_small" class="form-text text-right text-muted">Exclude how many of these blocks of days?</small>
                     <input type="number" id="period_exclude" class="form-control text-right" value="10" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
@@ -94,12 +91,23 @@
                         <th>Total Return missed <span id="missed"></span></th>
                         <td class="text-right"><span id="nlargest_tr">...</span></td>
                     </tr>
+                    <tr>
+                        <th>Total Return EXCLUDING missed periods</th>
+                        <td class="text-right"><span id="exclude_nlargest_tr">...</span></td>
+                    </tr>
+                    <tr>
+                        <th>Difference (<span class="small">Simple Subtraction of returns</span>)</th>
+                        <td class="text-right"><span id="difference">...</span></td>
+                    </tr>
                 </tbody>
             </table>
 
         </div>
 
     </div>
+
+<h6>Table of Missed Investment Periods</h6>
+<span id="n_largest">...</span>
 
 <hr>
 <h6>The source code for this page is available at <a href="https://github.com/pxsocs/cryptoanalytics">GitHub</a></h6>

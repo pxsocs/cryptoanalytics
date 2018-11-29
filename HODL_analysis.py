@@ -1,9 +1,9 @@
 import requests
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 import pandas as pd
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -72,6 +72,9 @@ def create_stats(ticker, fx, force, frequency,
     df.set_index('time', inplace=True)
     df['grouped_pct'] = df['close'].pct_change(frequency)
     df['return_day_pct'] = df['close'].pct_change(1)
+    df['Start Date'] = df.index
+    df['End Date'] = df.index.shift(frequency, freq="1D")
+    df['Start Price'] = df['close'].shift(frequency, freq="1D")
 
     # Save the initial and end date of available data downloaded
     stats['set_final_time'] = df.index.max()
@@ -79,8 +82,56 @@ def create_stats(ticker, fx, force, frequency,
 
     # Filter the dataframe to only include selected dates
     df = df[(df.index >= start_date) & (df.index <= end_date)]
+    df_nlargest_tmp = df.nlargest(period_exclude, 'grouped_pct')
 
-    stats['nlargest'] = df.nlargest(period_exclude, 'grouped_pct')
+    # When setting the nlargest, we need to remove the sets that have
+    # overlapping days and only keep the largest one.
+    # For that we can iterate until the nlargest have the right number
+    # of period_exclude but with no overlapping dates.
+    # stats['nlargest'] = df.nlargest(period_exclude, 'grouped_pct')
+
+    non_duplicate_count = 0
+    include_non_dup = 1
+
+    while non_duplicate_count != period_exclude:
+        # First check if any of the dates overlap and store on duplicate column
+        counter = 0
+        df_nlargest_tmp['duplicate'] = False
+        for index, row in df_nlargest_tmp.iterrows():
+            if counter == 0:  # skip the first row
+                counter += 1
+                continue
+
+            for check in range(0, counter):
+                lower_bound = df_nlargest_tmp.index[check] - timedelta(
+                    days=frequency)
+                upper_bound = df_nlargest_tmp.index[check] + timedelta(
+                    days=frequency)
+                if index > lower_bound and index < upper_bound:
+                    df_nlargest_tmp.set_value(index, 'duplicate', True)
+            counter += 1
+
+        non_duplicate_count = (df_nlargest_tmp[df_nlargest_tmp[
+            "duplicate"] == False].count()[0])
+
+        # Set a limit on number of tries - then exit
+        max_tries = 100
+        if (include_non_dup >= max_tries):
+            print("Error: Could not achieve the requested number of blocks")
+            # print(df_nlargest_tmp)
+            break
+
+        if non_duplicate_count != period_exclude:
+            df_nlargest_tmp = df.nlargest(
+                period_exclude + include_non_dup, 'grouped_pct')
+            include_non_dup += 1
+
+    # Only keep the unique periods
+
+    df_nlargest_tmp = df_nlargest_tmp[df_nlargest_tmp.duplicate == False]
+
+    stats['nlargest'] = df_nlargest_tmp
+
     stats['nsmallest'] = df.nsmallest(period_exclude, 'grouped_pct')
 
     # TR for the period
@@ -106,20 +157,51 @@ def create_stats(ticker, fx, force, frequency,
     stats['nsmallest_mean'] = stats['nsmallest']['grouped_pct'].mean()
 
     stats['nboth_tr'] = ((1+nlargest_tr)*(1+nsmallest_tr))-1
-    stats['exclude_nlargest_tr'] = (1 + stats['period_tr']) * (
-        1 - stats['nlargest_tr']) - 1
-    stats['exclude_nsmallest_tr'] = (1 + stats['period_tr']) * (
-        1 - stats['nsmallest_tr']) - 1
+    stats['exclude_nlargest_tr'] = ((1 + stats['period_tr']) / (
+        1 + stats['nlargest_tr'])) - 1
+
+    stats['exclude_nsmallest_tr'] = (1 + stats['period_tr']) / (
+        1 + stats['nsmallest_tr']) - 1
 
     stats['mean_daily_return_period'] = df['return_day_pct'].mean()
     stats['mean_nperiod_return'] = df['grouped_pct'].mean()
 
-    # Formatting the results to return a JSON
+    # Formatting the results to return a JSON & HTML Table
     stats['start_date'] = stats['start_date'].strftime('%m/%d/%Y')
     stats['end_date'] = stats['end_date'].strftime('%m/%d/%Y')
     stats['set_initial_time'] = stats['set_initial_time'].strftime('%m/%d/%Y')
     stats['set_final_time'] = stats['set_final_time'].strftime('%m/%d/%Y')
-    stats['nlargest'] = stats['nlargest'].to_json()
+
+    # NEED TO CHECK IF DATE IS HIGHER THAN TODAY!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # if df.index.shift(frequency, freq="1D") > datetime.now():
+    #     df['End Date'] = datetime.now()
+
+    nlargest_df = df_nlargest_tmp
+
+    nlargest_df['grouped_pct'] = nlargest_df['grouped_pct'] * 100
+    nlargest_df['grouped_pct'] = nlargest_df['grouped_pct'].apply(
+        "{:,.2f}%".format)
+    nlargest_df['close'] = nlargest_df['close'].apply("{:,.4f}".format)
+
+    nlargest_df['Start Price'] = nlargest_df['Start Price'].apply("{:,.4f}".format)
+
+    nlargest_df = nlargest_df.drop(
+        columns=['low', 'open', 'high', 'volumeto', 'volumefrom',
+                 'return_day_pct'])
+
+    nlargest_df.rename(columns={'close': 'Final Price'}, inplace=True)
+    nlargest_df.rename(columns={'grouped_pct': 'Return on period'},
+                       inplace=True)
+
+    nlargest_df = nlargest_df[['Start Date', 'End Date',
+                               'Start Price', 'Final Price',
+                               'Return on period']]
+
+    stats['nlargest'] = nlargest_df.to_html(
+        classes=["text-right small table table-striped"], border=0,
+        index=False)
+    # stats['nlargest'] = stats['nlargest'].to_json()
     stats['nsmallest'] = stats['nsmallest'].to_json()
     stats = json.dumps(stats)
 
@@ -134,16 +216,18 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/stats_json")
+@app.route("/stats_json", methods=['GET'])
 def stats_json():
-    # Inputs
-    ticker = "BTC"
-    fx = "USD"
-    force = False
-    frequency = 7
-    period_exclude = 2
-    start_date = datetime(2015, 1, 1)
-    end_date = datetime(2018, 11, 27)
+    # Read inputs
+    force = request.args.get('force')
+    ticker = request.args.get('ticker')
+    fx = request.args.get('fx')
+    frequency = int(request.args.get('frequency'))
+    period_exclude = int(request.args.get('period_exclude'))
+    start_date = request.args.get('start_date')
+    start_date = datetime.strptime(start_date, '%Y-%m-%d')
+    end_date = request.args.get('end_date')
+    end_date = datetime.strptime(end_date, '%Y-%m-%d')
 
     stats = create_stats(
         ticker, fx, force, frequency, period_exclude, start_date, end_date)
