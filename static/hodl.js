@@ -45,6 +45,15 @@ function retrieve_data() {
               difference = (data.exclude_nlargest_tr - data.period_tr)
               $('#difference').html((difference*100).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 })+" %");
               $('#n_largest').html(data.nlargest);
+              n_days = (data.end_date - data.start_date)
+              missed_days = (data.frequency * data.period_exclude)
+              pct_missed = (missed_days / n_days) * 100
+
+              returns_msg = "Out of a total of "+n_days+" days, you would have missed "+missed_days+" days or "+pct_missed+"% of the time."
+              $('#returns_msg').html(returns_msg);
+              return_missed = (data.nlargest_tr / data.period_tr) * 100
+              missed_msg = "By not being allocated "+pct_missed+"% of the time, you would have "+return_missed+"% of the returns during this period"
+
               }
           }
   });
@@ -64,5 +73,5 @@ function clean_data() {
     $('#exclude_nlargest_tr').html("-");
     $('#difference').html("-");
     $('#n_largest').html("-");
-
+    $('#returns_msg').html(" ");
 };
