@@ -90,8 +90,8 @@ def create_stats(ticker, fx, force, frequency,
     df.set_index('time', inplace=True)
     df['grouped_pct'] = df['close'].pct_change(frequency)
     df['return_day_pct'] = df['close'].pct_change(1)
-    df['Start Date'] = df.index
-    df['End Date'] = df.index.shift(frequency, freq="1D")
+    df['End Date'] = df.index
+    df['Start Date'] = df.index.shift(frequency*(-1), freq="1D")
     df['Start Price'] = df['close'].shift(frequency, freq="1D")
 
     # Save the initial and end date of available data downloaded
@@ -100,6 +100,8 @@ def create_stats(ticker, fx, force, frequency,
 
     # Filter the dataframe to only include selected dates
     df = df[(df.index >= start_date) & (df.index <= end_date)]
+    print(df)
+
     df_nlargest_tmp = df.nlargest(period_exclude, 'grouped_pct')
 
     # When setting the nlargest, we need to remove the sets that have
