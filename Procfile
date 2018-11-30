@@ -1,1 +1,1 @@
-web: gunicorn application:app
+web: gunicorn HODL_analysis:app
