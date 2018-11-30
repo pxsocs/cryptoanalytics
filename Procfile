@@ -1,1 +1,1 @@
-web: python HODL_analysis.py
+web: gunicorn run:app
