@@ -1,1 +1,1 @@
-web: python run:HODL_analysis.py
+web: python HODL_analysis.py
