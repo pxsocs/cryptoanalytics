@@ -2,8 +2,8 @@ $(document).ready(function() {
     $body = $("body");
 
     $(document).on({
-        ajaxStart: function() { $body.addClass("loading");    },
-         ajaxStop: function() { $body.removeClass("loading"); }
+        ajaxStart: function() {$body.addClass("loading");},
+        ajaxStop: function() {$body.removeClass("loading");}
     });
 
     retrieve_data();
@@ -23,7 +23,6 @@ function retrieve_data() {
           dataType: 'json',
           url: "/stats_json?ticker="+ticker+"&force=False&fx="+fx+"&start_date="+start_date+"&end_date="+end_date+"&frequency="+frequency+"&period_exclude="+period_exclude,
           success: function(data){
-              console.log (data.status)
               if (data.status == "error") {
                    clean_data();
                    $('#error_message').html("Something went wrong when requesting data. Is that a valid ticker?");
@@ -45,14 +44,24 @@ function retrieve_data() {
               difference = (data.exclude_nlargest_tr - data.period_tr)
               $('#difference').html((difference*100).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 })+" %");
               $('#n_largest').html(data.nlargest);
-              n_days = (data.end_date - data.start_date)
-              missed_days = (data.frequency * data.period_exclude)
-              pct_missed = (missed_days / n_days) * 100
+              var start_date = new Date(data.start_date);
+              var end_date = new Date(data.end_date);
+              var n_days = new Date(end_date - start_date);
+              n_days = n_days/1000/60/60/24;
+              var missed_days = (data.frequency * data.period_exclude);
+              var pct_missed = (missed_days / n_days) * 100;
+              var return_missed = (data.nlargest_tr / data.period_tr) * 100
+
+              n_days = n_days.toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 0, minimumFractionDigits : 0 });
+              missed_days = missed_days.toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 0, minimumFractionDigits : 0 });
+              pct_missed = pct_missed.toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 });
+              return_missed = return_missed.toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 });
 
               returns_msg = "Out of a total of "+n_days+" days, you would have missed "+missed_days+" days or "+pct_missed+"% of the time."
               $('#returns_msg').html(returns_msg);
-              return_missed = (data.nlargest_tr / data.period_tr) * 100
-              missed_msg = "By not being allocated "+pct_missed+"% of the time, you would have "+return_missed+"% of the returns during this period"
+
+              missed_msg = "By not being allocated "+pct_missed+"% of the time, you would have missed "+return_missed+"% of the returns during this period"
+              $('#missed_msg').html(missed_msg);
 
               }
           }
@@ -74,4 +83,5 @@ function clean_data() {
     $('#difference').html("-");
     $('#n_largest').html("-");
     $('#returns_msg').html(" ");
+    $('#missed_msg').html(" ");
 };
