@@ -223,6 +223,11 @@ def create_stats(ticker, fx, force, frequency,
         index=False)
     # stats['nlargest'] = stats['nlargest'].to_json()
     stats['nsmallest'] = stats['nsmallest'].to_json()
+
+    # Include Histogram Data in JSON
+    df['return_day_pct'] = df['return_day_pct'] * 100
+    stats['histogram'] = df['return_day_pct'].values.tolist()
+
     stats['status'] = "success"
     stats = json.dumps(stats)
 

@@ -23,6 +23,7 @@ function retrieve_data() {
           dataType: 'json',
           url: "/stats_json?ticker="+ticker+"&force=False&fx="+fx+"&start_date="+start_date+"&end_date="+end_date+"&frequency="+frequency+"&period_exclude="+period_exclude,
           success: function(data){
+              createcharts(data.histogram)
               if (data.status == "error") {
                    clean_data();
                    $('#error_message').html("Something went wrong when requesting data. Is that a valid ticker?");
@@ -84,4 +85,49 @@ function clean_data() {
     $('#n_largest').html("-");
     $('#returns_msg').html(" ");
     $('#missed_msg').html(" ");
+};
+
+
+function createcharts(datachart) {
+
+    data = datachart;
+
+        var myChart = Highcharts.chart('histogramchart', {
+    title: {
+        text: 'Histogram of daily returns'
+    },
+    xAxis: [{
+        title: { text: 'Days' },
+        alignTicks: false
+    }, {
+        title: { text: 'Histogram' },
+        alignTicks: false,
+        opposite: true
+    }],
+
+    yAxis: [{
+        title: { text: 'Daily Returns' }
+    }, {
+        title: { text: 'Histogram Occurences' },
+        opposite: true
+    }],
+
+    series: [{
+        name: 'Histogram',
+        type: 'histogram',
+        xAxis: 1,
+        yAxis: 1,
+        baseSeries: 's1',
+        borderWidth: 6,
+        zIndex: -1
+    }, {
+        name: 'Data',
+        type: 'scatter',
+        data: data,
+        id: 's1',
+        marker: {
+            radius: 1.5
+        }
+    }]
+});
 };
