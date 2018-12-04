@@ -250,9 +250,9 @@ def home():
 
 @app.route("/stats_json", methods=['GET'])
 def stats_json():
-    # For analytics - track & save IP address
+    # Create Log File
     ip_data = request.remote_addr
-    logging.basicConfig(filename='debug.log', level=logging.INFO)
+    logging.basicConfig(filename='debug_hodl.log', level=logging.INFO)
     logging.Formatter('%(asctime)s %(levelname)s %(message)s')
     logging.info("IP Address: "+ip_data)
 
