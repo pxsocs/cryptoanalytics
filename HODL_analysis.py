@@ -227,6 +227,8 @@ def create_stats(ticker, fx, force, frequency,
     # Include Histogram Data in JSON
     df['return_day_pct'] = df['return_day_pct'] * 100
     stats['histogram'] = df['return_day_pct'].values.tolist()
+    stats['histogram_dates'] = df.index.values.tolist()
+    print(stats['histogram_dates'])
 
     stats['status'] = "success"
     stats = json.dumps(stats)
