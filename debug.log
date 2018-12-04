@@ -1,3 +1,0 @@
-INFO:root:IP Address: 127.0.0.1
-INFO:werkzeug:127.0.0.1 - - [04/Dec/2018 14:09:36] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [04/Dec/2018 14:09:38] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-04&end_date=2018-12-04&frequency=3&period_exclude=10 HTTP/1.1" 200 -
