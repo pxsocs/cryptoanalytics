@@ -110,13 +110,20 @@ function createcharts(datachart, datechart) {
         alignTicks: false
     }, {
         title: { text: 'Histogram' },
+        labels: {
+                format: '{value:.2f}%'
+            },
         alignTicks: false,
         opposite: true
     }],
 
     yAxis: [{
-        title: { text: 'Daily Returns' }
-    }, {
+        title: { text: 'Daily Returns' },
+        format: '{value:.2f}%',
+        labels: {
+                format: '{value:.2f}%'
+            }},
+        {
         title: { text: 'Histogram Occurences' },
         opposite: true
     }],
@@ -139,4 +146,7 @@ function createcharts(datachart, datechart) {
         }
     }]
 });
+
+
+
 };

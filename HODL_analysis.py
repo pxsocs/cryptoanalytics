@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 import pandas as pd
 from flask import Flask, render_template, url_for, request
+import logging
 
 app = Flask(__name__)
 
@@ -73,7 +74,6 @@ def create_stats(ticker, fx, force, frequency,
         stats['status'] = "error"
         stats = json.dumps(stats)
         print("ERROR")
-        print(stats)
         return (stats)
 
     stats['ticker'] = ticker
@@ -100,7 +100,6 @@ def create_stats(ticker, fx, force, frequency,
 
     # Filter the dataframe to only include selected dates
     df = df[(df.index >= start_date) & (df.index <= end_date)]
-    print(df)
 
     df_nlargest_tmp = df.nlargest(period_exclude, 'grouped_pct')
 
@@ -192,11 +191,6 @@ def create_stats(ticker, fx, force, frequency,
     stats['set_initial_time'] = stats['set_initial_time'].strftime('%m/%d/%Y')
     stats['set_final_time'] = stats['set_final_time'].strftime('%m/%d/%Y')
 
-    # NEED TO CHECK IF DATE IS HIGHER THAN TODAY!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # if df.index.shift(frequency, freq="1D") > datetime.now():
-    #     df['End Date'] = datetime.now()
-
     nlargest_df = df_nlargest_tmp
 
     nlargest_df['grouped_pct'] = nlargest_df['grouped_pct'] * 100
@@ -204,7 +198,8 @@ def create_stats(ticker, fx, force, frequency,
         "{:,.2f}%".format)
     nlargest_df['close'] = nlargest_df['close'].apply("{:,.4f}".format)
 
-    nlargest_df['Start Price'] = nlargest_df['Start Price'].apply("{:,.4f}".format)
+    nlargest_df['Start Price'] = nlargest_df[
+        'Start Price'].apply("{:,.4f}".format)
 
     nlargest_df = nlargest_df.drop(
         columns=['low', 'open', 'high', 'volumeto', 'volumefrom',
@@ -228,7 +223,16 @@ def create_stats(ticker, fx, force, frequency,
     df['return_day_pct'] = df['return_day_pct'] * 100
     stats['histogram'] = df['return_day_pct'].values.tolist()
     stats['histogram_dates'] = df.index.values.tolist()
-    print(stats['histogram_dates'])
+
+    stats['bar_chart_returns'] = {}
+    stats['bar_chart_returns']['categories'] = list(range(1, period_exclude+1))
+    stats['bar_chart_returns']['data'] = nlargest_df[
+        'Return on period'].values.tolist()
+
+    # nlargest_df['label'] = str("From: "+nlargest_df['Start Date']+" To: "+nlargest_df['End Date'])
+    # stats['bar_chart_returns']['labels'] = nlargest_df['label'].values.tolist()
+
+    print(stats['bar_chart_returns'])
 
     stats['status'] = "success"
     stats = json.dumps(stats)
@@ -246,6 +250,12 @@ def home():
 
 @app.route("/stats_json", methods=['GET'])
 def stats_json():
+    # For analytics - track & save IP address
+    ip_data = request.remote_addr
+    logging.basicConfig(filename='debug.log', level=logging.INFO)
+    logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    logging.info("IP Address: "+ip_data)
+
     # Read inputs
     force = request.args.get('force')
     ticker = request.args.get('ticker')
