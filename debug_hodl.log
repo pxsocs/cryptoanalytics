@@ -1,3 +1,130 @@
 INFO:root:IP Address: 127.0.0.1
 INFO:werkzeug:127.0.0.1 - - [04/Dec/2018 14:27:31] "GET /favicon.ico HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [04/Dec/2018 14:27:33] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-04&end_date=2018-12-04&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:46:07] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:46:07] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:46:07] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:46:07] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:46:12] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:46:12] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:53:31] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:53:31] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:53:31] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:53:31] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:53:32] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:53:34] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:56:52] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:56:52] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:56:52] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:56:52] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:56:53] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:56:55] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:30] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:30] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:30] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:30] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:31] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:33] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:55] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:55] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:55] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:55] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:57] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 10:57:59] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:00:53] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:00:53] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:00:53] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:00:53] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:00:54] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:00:56] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:01:32] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:01:32] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:01:32] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:01:32] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:01:33] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:01:35] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:02:23] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:02:23] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:02:23] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:02:23] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:02:24] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:02:26] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:19:09] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:19:09] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:19:09] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:19:09] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:19:11] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:19:12] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:21:25] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:21:25] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:21:25] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:21:26] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:21:27] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [05/Dec/2018 11:21:29] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-05&end_date=2018-12-05&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:00:41] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:00:41] "GET /static/main.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:00:41] "GET /static/highcharts.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:00:41] "GET /static/hodl.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:00:45] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:01:12] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:01:12] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:01:13] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:01:13] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:01:14] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:01:17] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:02:19] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:02:19] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:02:19] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:02:19] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:02:22] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:02:24] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:26:53] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:26:53] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:26:53] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:26:53] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:26:55] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:26:56] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:27:15] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:27:15] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:27:15] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:27:15] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:27:17] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:27:18] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:28:27] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:28:28] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:28:28] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:28:28] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:28:30] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:28:31] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:33:14] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:33:15] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:33:15] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:33:15] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:33:16] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:33:18] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:34:03] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:34:03] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:34:03] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:34:03] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:34:04] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:34:06] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -

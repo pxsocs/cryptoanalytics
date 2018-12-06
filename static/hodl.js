@@ -33,6 +33,7 @@ function retrieve_data() {
           url: "/stats_json?ticker="+ticker+"&force=False&fx="+fx+"&start_date="+start_date+"&end_date="+end_date+"&frequency="+frequency+"&period_exclude="+period_exclude,
           success: function(data){
               createcharts(data.histogram, data.histogram_dates)
+              createbarchart(data.bar_chart_returns.data, data.bar_chart_returns.categories)
               if (data.status == "error") {
                    clean_data();
                    $('#error_message').html("Something went wrong when requesting data. Is that a valid ticker?");
@@ -147,6 +148,78 @@ function createcharts(datachart, datechart) {
     }]
 });
 
+};
 
 
+
+function createbarchart(datachart, chartcat) {
+
+    data = datachart;
+
+        var myChart = Highcharts.chart('bar_chart_returns', {
+            credits: {
+                text: "",
+                href: "/home"
+            },
+            chart: {
+                zoomType: 'x',
+                backgroundColor:"#FAFAFA",
+            },
+            title: {
+                text: 'Missed Investment Periods'
+            },
+
+            xAxis: {
+                type: 'category',
+                categories: chartcat,
+                labels: {
+                    rotation: 0
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Return',
+                },
+                labels: {
+                    format: '{value:.2f}%'
+                        }
+            },
+
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 0.5,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'bar',
+                name: 'Returns',
+                data: datachart,
+                turboThreshold: 0
+            }]
+        });
 };

@@ -62,6 +62,11 @@ def pricegrabber(ticker, fx, force):
     return (data)
 
 
+def p2f(x):
+    # Convert a percentage string into float
+    return float(x.strip('%'))/100
+
+
 def create_stats(ticker, fx, force, frequency,
                  period_exclude, start_date, end_date):
     # Store the data in a dictionary for later use in html
@@ -226,8 +231,10 @@ def create_stats(ticker, fx, force, frequency,
 
     stats['bar_chart_returns'] = {}
     stats['bar_chart_returns']['categories'] = list(range(1, period_exclude+1))
-    stats['bar_chart_returns']['data'] = nlargest_df[
-        'Return on period'].values.tolist()
+    df_nlargest_tmp['grouped_pct'] = df_nlargest_tmp['grouped_pct'].str.rstrip(
+        '%').astype('float')
+    stats['bar_chart_returns']['data'] = df_nlargest_tmp[
+        'grouped_pct'].values.tolist()
 
     # nlargest_df['label'] = str("From: "+nlargest_df['Start Date']+" To: "+nlargest_df['End Date'])
     # stats['bar_chart_returns']['labels'] = nlargest_df['label'].values.tolist()
@@ -250,11 +257,6 @@ def home():
 
 @app.route("/stats_json", methods=['GET'])
 def stats_json():
-    # Create Log File
-    ip_data = request.remote_addr
-    logging.basicConfig(filename='debug_hodl.log', level=logging.INFO)
-    logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-    logging.info("IP Address: "+ip_data)
 
     # Read inputs
     force = request.args.get('force')
@@ -272,6 +274,10 @@ def stats_json():
 
     return(stats)
 
+
+# Init Log File
+logging.basicConfig(filename='debug_hodl.log', level=logging.INFO)
+logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 
 # Start Flask Server
 if __name__ == '__main__':
