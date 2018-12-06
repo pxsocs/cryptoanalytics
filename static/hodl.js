@@ -181,7 +181,8 @@ function createbarchart(datachart, chartcat) {
                     text: 'Return',
                 },
                 labels: {
-                    format: '{value:.2f}%'
+                    format: '{value:.2f}%',
+                    overflow: 'justify'
                         }
             },
 
@@ -189,6 +190,12 @@ function createbarchart(datachart, chartcat) {
                 enabled: false
             },
             plotOptions: {
+                bar: {
+                    dataLabels: {
+                        format: '{point.y:.2f}%',
+                        enabled: true
+                    }
+                },
                 area: {
                     fillColor: {
                         linearGradient: {
