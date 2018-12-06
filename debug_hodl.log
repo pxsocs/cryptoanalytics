@@ -203,3 +203,8 @@ INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:59:19] "GET /static/highcharts.js HT
 INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:59:19] "GET /static/hodl.js HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:59:20] "GET /favicon.ico HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 08:59:22] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 09:41:02] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 09:41:09] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 10:10:46] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 10:10:47] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 10:10:49] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
