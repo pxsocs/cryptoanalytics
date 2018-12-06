@@ -16,8 +16,14 @@ $(document).ready(function() {
     });
 
     retrieve_data();
-    $('.monitor_chg').on('change', retrieve_data);
+    $('.monitor_chg').on('change', doAdelay);
 } );
+
+function doAdelay(){
+    // This is not working properly. Should wait a few seconds to wait for user input before running the ajax
+    setTimeout(function(){return true;},30000);
+    retrieve_data()
+};
 
 function retrieve_data() {
     var ticker = $('#ticker').val()
@@ -31,6 +37,10 @@ function retrieve_data() {
           type: "GET",
           dataType: 'json',
           url: "/stats_json?ticker="+ticker+"&force=False&fx="+fx+"&start_date="+start_date+"&end_date="+end_date+"&frequency="+frequency+"&period_exclude="+period_exclude,
+          error: function() {
+                clean_data();
+                $('#error_msg').html("Something went wrong. Try again.");
+            },
           success: function(data){
               createcharts(data.histogram, data.histogram_dates)
               createbarchart(data.bar_chart_returns.data, data.bar_chart_returns.categories)
@@ -95,6 +105,8 @@ function clean_data() {
     $('#n_largest').html("-");
     $('#returns_msg').html(" ");
     $('#missed_msg').html(" ");
+    $('#bar_chart_returns').html(" ");
+    $('#histogramchart').html(" ");
 };
 
 
