@@ -32,7 +32,7 @@ def pricegrabber(ticker, fx, force):
                 data = json.loads(fh.read())
             return (data)
 
-    # File is outdated or dne, let's grab new data
+    # File is outdated or DNE, let's grab new data
     print(f"Downloading history for {ticker} on {fx} terms")
     print("Please wait - this can take a few minutes...")
 
@@ -78,7 +78,7 @@ def create_stats(ticker, fx, force, frequency,
     if price_data == "error":
         stats['status'] = "error"
         stats = json.dumps(stats)
-        print("ERROR")
+
         return (stats)
 
     stats['ticker'] = ticker
@@ -235,11 +235,6 @@ def create_stats(ticker, fx, force, frequency,
         '%').astype('float')
     stats['bar_chart_returns']['data'] = df_nlargest_tmp[
         'grouped_pct'].values.tolist()
-
-    # nlargest_df['label'] = str("From: "+nlargest_df['Start Date']+" To: "+nlargest_df['End Date'])
-    # stats['bar_chart_returns']['labels'] = nlargest_df['label'].values.tolist()
-
-    print(stats['bar_chart_returns'])
 
     stats['status'] = "success"
     stats = json.dumps(stats)

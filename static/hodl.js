@@ -84,6 +84,9 @@ function retrieve_data() {
               missed_msg = "By not being allocated "+pct_missed+"% of the time, you would have missed "+return_missed+"% of the returns during this period"
               $('#missed_msg').html(missed_msg);
 
+              $('#mean_daily_return_period').html((data.mean_daily_return_period*100).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 })+" %");
+              $('#mean_nperiod_return').html((data.mean_nperiod_return*100).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 })+" %");
+              $('#nlargest_mean').html((data.nlargest_mean*100).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits : 2, minimumFractionDigits : 2 })+" %");
               }
           }
   });
@@ -107,6 +110,9 @@ function clean_data() {
     $('#missed_msg').html(" ");
     $('#bar_chart_returns').html(" ");
     $('#histogramchart').html(" ");
+    $('#mean_daily_return_period').html(" ");
+    $('#mean_nperiod_return').html(" ");
+    $('#nlargest_mean').html(" ");
 };
 
 

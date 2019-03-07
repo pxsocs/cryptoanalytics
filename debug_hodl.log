@@ -311,3 +311,93 @@ INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:08:17] "GET /stats_json?ticker=BsssT
 INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:08:30] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:08:41] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=2&period_exclude=10 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:08:50] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=1&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:12:19] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:12:20] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Dec/2018 20:12:23] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-06&end_date=2018-12-06&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:49:00] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:49:00] "GET /static/main.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:49:00] "GET /static/highcharts.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:49:00] "GET /static/hodl.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:49:04] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:50:49] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:50:49] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:50:49] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:50:49] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:50:51] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 08:50:53] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/Users/zagury/Documents/Coding/cryptoanalytics/HODL_analysis.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:20] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:20] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:20] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:20] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:22] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:24] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:40] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=4&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:52] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:52] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:52] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:52] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:53] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:55] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=41&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:01:55] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:00] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=1&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:27] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2017-12-08&end_date=2018-12-08&frequency=1&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:27] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0002-12-08&end_date=2018-12-08&frequency=1&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:27] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0020-12-08&end_date=2018-12-08&frequency=1&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:27] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0201-12-08&end_date=2018-12-08&frequency=1&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:40] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2017-12-08&end_date=2018-12-08&frequency=2&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:02:53] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2017-12-08&end_date=2018-12-08&frequency=1&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:06:29] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:06:29] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:06:29] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:06:29] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:06:30] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:06:32] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:07:48] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0020-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:07:48] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0002-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:07:49] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0201-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2018 09:07:49] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2017-12-08&end_date=2018-12-08&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:31] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:31] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:32] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:35] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-09&end_date=2018-12-09&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:47] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:47] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:47] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:49] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:09:51] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-09&end_date=2018-12-09&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:13] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-09&end_date=2018-12-09&frequency=2&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:17] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-09&end_date=2018-12-09&frequency=2&period_exclude=5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:25] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2015-12-09&end_date=2018-12-09&frequency=1&period_exclude=5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:36] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0002-12-09&end_date=2018-12-09&frequency=1&period_exclude=5 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:36] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0020-12-09&end_date=2018-12-09&frequency=1&period_exclude=5 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:36] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=0201-12-09&end_date=2018-12-09&frequency=1&period_exclude=5 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [09/Dec/2018 18:10:37] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2016-12-09&end_date=2018-12-09&frequency=1&period_exclude=5 HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 215-144-780
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:04] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:04] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:04] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:04] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:06] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:08] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2016-03-07&end_date=2019-03-07&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:47] "GET /static/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:47] "GET /static/hodl.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:47] "GET /static/highcharts.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:48] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:50] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2016-03-07&end_date=2019-03-07&frequency=3&period_exclude=10 HTTP/1.1" 200 -
