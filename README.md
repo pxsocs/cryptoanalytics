@@ -4,5 +4,5 @@
 Make sure to PIP Install the requirements.txt before running. Then run:
 ```Flask run```
 
-# Like this code? Consider tipping with LN :)
-tippin.me/@alphaazeta
+## Like this code? Consider tipping with [LN](tippin.me/@alphaazeta) :)
+
