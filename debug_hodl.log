@@ -401,3 +401,7 @@ INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:47] "GET /static/hodl.js HTTP/1.1
 INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:47] "GET /static/highcharts.js HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:48] "GET /favicon.ico HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [07/Mar/2019 13:39:50] "GET /stats_json?ticker=BTC&force=False&fx=USD&start_date=2016-03-07&end_date=2019-03-07&frequency=3&period_exclude=10 HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 260-620-136

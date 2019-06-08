@@ -5,8 +5,39 @@ from pathlib import Path
 import pandas as pd
 from flask import Flask, render_template, url_for, request
 import logging
+from bs4 import BeautifulSoup
+
 
 app = Flask(__name__)
+
+
+def googlegrabber(ticker):
+    # Downloads Historical Prices for stock indices from Google Finance and
+    # saves to a json similar to what pricegrabber does
+
+    url = "https://www.google.com/finance/historical?cid=207437&startdate=Jan%201%2C%201971&enddate=Jul%201%2C%202017&start={0}&num=30"
+    # change this to 138
+    how_many_pages = 3
+    start = 0
+
+    for i in range(how_many_pages):
+        new_url = url.format(start)
+        page = requests.get(new_url)
+        soup = BeautifulSoup(page.content, "html5lib")
+        table = soup.find_all('table', class_='gf-table historical_price')[0]
+
+        columns_header = [th.getText() for th in table.findAll('tr')[0].findAll('th')]
+        data_rows = table.findAll('tr')[1:]
+        data = [[td.getText() for td in data_rows[i].findAll(['td'])]
+                for i in range(len(data_rows))]
+
+        if (start == 0):
+            final_df = pd.DataFrame(data, columns=columns_header)
+        else:
+            df = pd.DataFrame(data, columns=columns_header)
+            final_df = pd.concat([final_df, df], axis=0)
+        start += 30
+    # write your code to save final_df to csv
 
 
 def pricegrabber(ticker, fx, force):

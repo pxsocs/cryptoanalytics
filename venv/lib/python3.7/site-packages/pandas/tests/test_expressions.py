@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-# pylint: disable-msg=W0612,E1101
 
-from warnings import catch_warnings
-import re
 import operator
-import pytest
-
-from numpy.random import randn
+import re
+from warnings import catch_warnings, simplefilter
 
 import numpy as np
+from numpy.random import randn
+import pytest
 
+from pandas import _np_version_under1p13, compat
 from pandas.core.api import DataFrame, Panel
 from pandas.core.computation import expressions as expr
-from pandas import compat, _np_version_under1p11, _np_version_under1p13
-from pandas.util.testing import (assert_almost_equal, assert_series_equal,
-                                 assert_frame_equal, assert_panel_equal)
-from pandas.io.formats.printing import pprint_thing
 import pandas.util.testing as tm
+from pandas.util.testing import (
+    assert_almost_equal, assert_frame_equal, assert_panel_equal,
+    assert_series_equal)
+
+from pandas.io.formats.printing import pprint_thing
+
+# pylint: disable-msg=W0612,E1101
 
 
 _frame = DataFrame(randn(10000, 4), columns=list('ABCD'), dtype='float64')
@@ -38,6 +40,7 @@ _integer2 = DataFrame(np.random.randint(1, 100, size=(101, 4)),
                       columns=list('ABCD'), dtype='int64')
 
 with catch_warnings(record=True):
+    simplefilter("ignore", FutureWarning)
     _frame_panel = Panel(dict(ItemA=_frame.copy(),
                               ItemB=(_frame.copy() + 3),
                               ItemC=_frame.copy(),
@@ -108,7 +111,7 @@ class TestExpressions(object):
                             check_dtype=True)
 
     def run_binary(self, df, other, assert_func, test_flex=False,
-                   numexpr_ops=set(['gt', 'lt', 'ge', 'le', 'eq', 'ne'])):
+                   numexpr_ops={'gt', 'lt', 'ge', 'le', 'eq', 'ne'}):
         """
         tests solely that the result is the same whether or not numexpr is
         enabled.  Need to test whether the function does the correct thing
@@ -191,6 +194,7 @@ class TestExpressions(object):
         self.run_series(self.integer.iloc[:, 0], self.integer.iloc[:, 0])
 
     @pytest.mark.slow
+    @pytest.mark.filterwarnings("ignore:\\nPanel:FutureWarning")
     def test_integer_panel(self):
         self.run_panel(_integer2_panel, np.random.randint(1, 100))
 
@@ -201,6 +205,7 @@ class TestExpressions(object):
         self.run_series(self.frame2.iloc[:, 0], self.frame2.iloc[:, 0])
 
     @pytest.mark.slow
+    @pytest.mark.filterwarnings("ignore:\\nPanel:FutureWarning")
     def test_float_panel(self):
         self.run_panel(_frame2_panel, np.random.randn() + 0.1, binary_comp=0.8)
 
@@ -215,6 +220,7 @@ class TestExpressions(object):
             self.run_series(self.mixed2[col], self.mixed2[col], binary_comp=4)
 
     @pytest.mark.slow
+    @pytest.mark.filterwarnings("ignore:\\nPanel:FutureWarning")
     def test_mixed_panel(self):
         self.run_panel(_mixed2_panel, np.random.randint(1, 100),
                        binary_comp=-2)
@@ -268,10 +274,7 @@ class TestExpressions(object):
                 for op, op_str in [('add', '+'), ('sub', '-'), ('mul', '*'),
                                    ('div', '/'), ('pow', '**')]:
 
-                    # numpy >= 1.11 doesn't handle integers
-                    # raised to integer powers
-                    # https://github.com/pandas-dev/pandas/issues/15363
-                    if op == 'pow' and not _np_version_under1p11:
+                    if op == 'pow':
                         continue
 
                     if op == 'div':
@@ -378,22 +381,22 @@ class TestExpressions(object):
                 f = getattr(operator, name)
                 err_msg = re.escape(msg % op)
 
-                with tm.assert_raises_regex(NotImplementedError, err_msg):
+                with pytest.raises(NotImplementedError, match=err_msg):
                     f(df, df)
 
-                with tm.assert_raises_regex(NotImplementedError, err_msg):
+                with pytest.raises(NotImplementedError, match=err_msg):
                     f(df.a, df.b)
 
-                with tm.assert_raises_regex(NotImplementedError, err_msg):
+                with pytest.raises(NotImplementedError, match=err_msg):
                     f(df.a, True)
 
-                with tm.assert_raises_regex(NotImplementedError, err_msg):
+                with pytest.raises(NotImplementedError, match=err_msg):
                     f(False, df.a)
 
-                with tm.assert_raises_regex(TypeError, err_msg):
+                with pytest.raises(NotImplementedError, match=err_msg):
                     f(False, df)
 
-                with tm.assert_raises_regex(TypeError, err_msg):
+                with pytest.raises(NotImplementedError, match=err_msg):
                     f(df, True)
 
     def test_bool_ops_warn_on_arithmetic(self):
@@ -442,3 +445,19 @@ class TestExpressions(object):
                     r = f(df, True)
                     e = fe(df, True)
                     tm.assert_frame_equal(r, e)
+
+    @pytest.mark.parametrize("test_input,expected", [
+        (DataFrame([[0, 1, 2, 'aa'], [0, 1, 2, 'aa']],
+                   columns=['a', 'b', 'c', 'dtype']),
+         DataFrame([[False, False], [False, False]],
+                   columns=['a', 'dtype'])),
+        (DataFrame([[0, 3, 2, 'aa'], [0, 4, 2, 'aa'], [0, 1, 1, 'bb']],
+                   columns=['a', 'b', 'c', 'dtype']),
+         DataFrame([[False, False], [False, False],
+                   [False, False]], columns=['a', 'dtype'])),
+    ])
+    def test_bool_ops_column_name_dtype(self, test_input, expected):
+        # GH 22383 - .ne fails if columns containing column name 'dtype'
+        result = test_input.loc[:, ['a', 'dtype']].ne(
+            test_input.loc[:, ['a', 'dtype']])
+        assert_frame_equal(result, expected)
