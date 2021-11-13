@@ -26,7 +26,8 @@ def googlegrabber(ticker):
         soup = BeautifulSoup(page.content, "html5lib")
         table = soup.find_all('table', class_='gf-table historical_price')[0]
 
-        columns_header = [th.getText() for th in table.findAll('tr')[0].findAll('th')]
+        columns_header = [th.getText()
+                          for th in table.findAll('tr')[0].findAll('th')]
         data_rows = table.findAll('tr')[1:]
         data = [[td.getText() for td in data_rows[i].findAll(['td'])]
                 for i in range(len(data_rows))]
@@ -72,14 +73,10 @@ def pricegrabber(ticker, fx, force):
         "&tsym="+fx+"&allData=true"
     print(f" URL = {baseURL}")
 
-    time_frame = 0
     #  For some reason, the CryptoCompare API retuns only 30 days of data
     #  from time to time. Not sure why. This forces the download until done.
-
-    while time_frame < 3000000:
-        request = requests.get(baseURL)
-        data = request.json()
-        time_frame = data['TimeFrom'] - data['TimeTo']
+    request = requests.get(baseURL)
+    data = request.json()
 
     if (data['Response'] == "Error"):
         print("Error Downloading Data - something went wrong")
